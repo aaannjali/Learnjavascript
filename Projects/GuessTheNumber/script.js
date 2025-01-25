@@ -66,7 +66,7 @@ function displayGuess(guess){
         userInput.value = '';
         guessSlot.innerHTML += `${guess}  ,  `;
         numGuess++;
-        remaining.innerHTML = `${11 - numGuess}`;
+        remaining.innerHTML = `${Math.max(0, 11 - numGuess)}`;
 }
 function displayMessage(message){
 lowOrHi.innerHTML = `<h2>${message}</h2>`
@@ -88,12 +88,14 @@ function startgame(){
           randomNumber = parseInt(Math.random() * 100 + 1);
           prevGuess = [];
           numGuess = 1;
-          guessSlot.innerHTML = '';
-          remaining.innerHTML = ``;
-          p.innerHTML = `<h2>Game Restart</h2>`;
-          userInput.removeAttribute('disabled');
           startOver.removeChild(p);
+          guessSlot.innerHTML = '';
+          remaining.innerHTML = `${11 - numGuess}`;
+          userInput.removeAttribute('disabled');
+          lowOrHi.innerHTML = '';
       
           playgame = true;
         });
       }
+
+      
